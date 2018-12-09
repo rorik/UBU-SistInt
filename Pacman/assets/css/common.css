@@ -1,0 +1,25 @@
+.pacman-game-table {
+	background-color:#000000;
+}
+.pacman-game-table .cell {
+	width: 32px;
+	height: 32px;
+}
+.pacman-game-table .cell > .container {
+	width: 100%;
+	height: 100%;
+}
+.pacman-game-table .cell > .container.pacman {
+	width: 70%;
+	height: 70%;
+	background-color: #FFFF00;
+	border-radius: 50%;
+}
+.pacman-game-table .cell > .container.path {
+	width: 20%;
+	height: 20%;
+}
+.pacman-game-table .cell > .container.path.food {
+	background-color: #dea185;
+	border-radius: 50%;
+}

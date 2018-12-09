@@ -1,0 +1,276 @@
+:root {
+	--spritesheet-src: url('../img/spritesheet.min.png');
+	--cell-size: 32px;
+	--sprite-size: 24px;
+  }
+/* Intermidiate cells */
+	.pacman-game-table.intermediate .cell > .container.wall.north {
+		border-top: 1px solid #1919a6;
+	}
+	.pacman-game-table.intermediate .cell > .container.wall.south {
+		border-bottom: 1px solid #1919a6;
+	}
+	.pacman-game-table.intermediate .cell > .container.wall.west {
+		border-left: 1px solid #1919a6;
+	}
+	.pacman-game-table.intermediate .cell > .container.wall.east {
+		border-right: 1px solid #1919a6;
+}
+/* UI */
+	@font-face {
+		font-family: 'emulogic';
+		src: url('../font/emulogic.ttf');
+	}
+	.pacman-game.font {
+		font-family: 'emulogic';
+		letter-spacing: 0.1em;
+		font-size: 1.4em;
+		color: white;
+	}
+	.pacman-game.font ::selection {
+		background: transparent;
+	}
+	.pacman-game.font ::-moz-selection {
+		background: transparent;
+	}
+	.front {
+		position: absolute;
+	}
+	.front.center {
+		margin-top: -16px;
+		margin-left: 4px;
+	}
+/* Header */
+	/* Header containers */
+		.pacman-game-header {
+			background-color:#000000;
+			color: #FFFFFF;
+			width: unset;
+			padding-bottom: 2em;
+		}
+		.pacman-game-header > div {
+			position: absolute;
+			height: 32px;
+		}
+	/* 1UP and score */
+		.pacman-game-header > .left {
+			width: 30%;
+		}
+		.pacman-game-header > .left > span {
+			position: absolute;
+		}
+		.pacman-game-header > .left > span.title {
+			right: 35%;
+		}
+		.pacman-game-header > .left > span.value {
+			display: block;
+			right: calc(35% - 1em);
+			top: 1.4em;
+		}
+	/* Highscore */
+		.pacman-game-header > .right {
+			width: 32%;
+			left: 30%;
+		}
+		.pacman-game-header > .right > span {
+			position: absolute;
+		}
+		.pacman-game-header > .right > span.title {
+			right: 15%;
+		}
+		.pacman-game-header > .right > span.value {
+			display: block;
+			right: calc(15% + 2.2em);
+			top: 1.4em;
+		}
+/* Footer */
+	/* Header containers */
+		.pacman-game-footer {
+			background-color:#000000;
+			color: #FFFFFF;
+		}
+		.pacman-game-footer > div {
+			position: relative;
+			float: left;
+			height: 16px;
+			top: -20px;
+			left: 8%;
+			width: 42%;
+		}
+	/* Lives */
+		.pacman-game-footer .lives > div  {
+			display: inline-block;
+			margin-right: 0;
+		}
+	/* Fruits */
+		.pacman-game-footer .fruits > div {
+			float: right;
+			margin-left: 0;
+		}
+/* Sprites */
+	.sprite {
+		width: var(--sprite-size);
+		height: var(--sprite-size);
+	}
+	.sprite.pacman {
+		background: var(--spritesheet-src) 0 0;
+	}
+	.sprite.life {
+		background: var(--spritesheet-src) -144px 0;
+	}
+	.sprite.cherry {
+		background: var(--spritesheet-src) 0 calc(var(--sprite-size) * -2);
+	}
+	.sprite.strawberry {
+		background: var(--spritesheet-src) calc(var(--sprite-size) * -1) calc(var(--sprite-size) * -2);
+	}
+	.sprite.orange {
+		background: var(--spritesheet-src) calc(var(--sprite-size) * -2) calc(var(--sprite-size) * -2);
+	}
+	.sprite.apple {
+		background: var(--spritesheet-src) calc(var(--sprite-size) * -3)  calc(var(--sprite-size) * -2);
+	}
+	.sprite.melon {
+		background: var(--spritesheet-src) calc(var(--sprite-size) * -4)  calc(var(--sprite-size) * -2);
+	}
+	.sprite.galaxian {
+		background: var(--spritesheet-src) calc(var(--sprite-size) * -5)  calc(var(--sprite-size) * -2);
+	}
+	.sprite.bell {
+		background: var(--spritesheet-src) calc(var(--sprite-size) * -6)  calc(var(--sprite-size) * -2);
+	}
+	.sprite.key {
+		background: var(--spritesheet-src) calc(var(--sprite-size) * -7)  calc(var(--sprite-size) * -2);
+	}
+	.sprite.north {
+		transform: rotate(0deg);
+	}
+	.sprite.east {
+		transform: rotate(90deg);
+	}
+	.sprite.south {
+		transform: rotate(180deg);
+	}
+	.sprite.west {
+		transform: rotate(270deg);
+	}
+/* Animations */
+	.animated.blink {
+		animation-name: blinker;
+		animation-timing-function: step-start;
+	}
+	/* Move */
+		.animated.move {
+			animation-timing-function: linear;
+		}
+		.animated.move.north {
+			animation-name: move-north;
+		}
+		.animated.move.east {
+			animation-name: move-east;
+		}
+		.animated.move.south {
+			animation-name: move-south;
+		}
+		.animated.move.west {
+			animation-name: move-west;
+		}
+	/* Mouth */
+		.animated.mouth {
+			animation-name: eat;
+			animation-timing-function: step-start;
+			animation-name: eat;
+		}
+	/* Move + Mouth */
+		.animated.move.mouth {
+			animation-timing-function: linear, step-start;
+			animation-duration: 0.5s, 0.5s;
+			animation-iteration-count: 1, 1;
+		}
+		.animated.move.mouth.north {
+			animation-name: move-north, eat;
+		}
+		.animated.move.mouth.east {
+			animation-name: move-east, eat;
+		}
+		.animated.move.mouth.south {
+			animation-name: move-south, eat;
+		}
+		.animated.move.mouth.west {
+			animation-name: move-west, eat;
+		}
+		.animated.move.repeat {
+			animation-iteration-count: infinite, infinite;
+		}
+	.animated.repeat {
+		animation-iteration-count: infinite;
+	}
+	.animated.fast {
+		animation-duration: 0.5s;
+	}
+	.animated.faster {
+		animation-duration: 0.25s;
+	}
+	.animated.fastest {
+		animation-duration: 0.1s;
+	}
+	.animated.normal {
+		animation-duration: 1s;
+	}
+	.animated.slow {
+		animation-duration: 2s;
+	}
+	@keyframes blinker {
+		50% {
+		opacity: 0;
+		}
+	}
+	@keyframes move-north {
+        0% {
+			margin-top: var(--cell-size);
+        }
+        100% {
+			margin-top: 0;
+		}
+    }
+	@keyframes move-east {
+        0% {
+			margin-left: calc(var(--cell-size) * -1);
+        }
+        100% {
+			margin-left: 0;
+		}
+    }
+	@keyframes move-south {
+        0% {
+			margin-top: calc(var(--cell-size) * -1);
+        }
+        100% {
+			margin-top: 0;
+		}
+    }
+	@keyframes move-west {
+        0% {
+			margin-left: var(--cell-size);
+        }
+        100% {
+			margin-left: 0;
+		}
+    }
+	@keyframes eat {
+        20% {
+			background: var(--spritesheet-src) calc(var(--sprite-size) * -8) 0;
+        }
+        40% {
+			background: var(--spritesheet-src) 0 0;
+		}
+        60% {
+			background: var(--spritesheet-src) calc(var(--sprite-size) * -1) 0;
+		}
+        80% {
+			background: var(--spritesheet-src) 0 0;
+		}
+        100% {
+			background: var(--spritesheet-src) calc(var(--sprite-size) * -8) 0;
+		}
+    }

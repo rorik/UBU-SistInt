@@ -1,0 +1,3 @@
+.pacman-game-table.simple .cell > .container.wall {
+    border: 1px solid #1919a6;
+}

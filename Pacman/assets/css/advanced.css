@@ -1,0 +1,28 @@
+.pacman-game-table .cell > .container.wall {
+	height: 40%;
+	width: 40%;
+	border: 1px solid #1919a6;
+}
+/* Basic coordinates */
+.pacman-game-table .cell > .container.wall.north {
+	height: 75%;
+	margin-bottom: 25%;
+}
+.pacman-game-table .cell > .container.wall.south {
+	height: 75%;
+	margin-top: 25%;
+}
+.pacman-game-table .cell > .container.wall.west {
+	width: 75%;
+	margin-right: 25%;
+}
+.pacman-game-table .cell > .container.wall.east {
+	width: 75%;
+	margin-left: 25%;
+}
+.pacman-game-table .cell > .container.wall.vertical {
+	height: 100%;
+}
+.pacman-game-table .cell > .container.wall.horizontal {
+	width: 100%;
+}
