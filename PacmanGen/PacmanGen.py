@@ -46,16 +46,16 @@ def evaluate(individual):
 def breed(individual1, individual2):
     child = Individual(NeuralNetwork.get_new_model(board))
     for layer in range(len(individual1.model.layers)):
-        shape = individual1.model.layers[layer].get_weights()[0].shape
-        w1 = individual1.model.layers[layer].get_weights()[0].flatten()
-        w2 = individual2.model.layers[layer].get_weights()[0].flatten()
+        # Breed the weights
+        w1 = individual1.model.layers[layer].get_weights()[0]
+        w_mask = np.random.randint(0, int(random.random() * w1.size)+1, size=w1.shape).astype(np.bool)
+        w = np.copy(w1)
+        w[w_mask] = individual2.model.layers[layer].get_weights()[0][w_mask]
+        # Breed the biases
         b1 = individual1.model.layers[layer].get_weights()[1]
-        b2 = individual2.model.layers[layer].get_weights()[1]
-        w_cut = int(random.random() * len(w1))
-        b_cut = int(random.random() * len(b1))
-        w = np.concatenate([w1[:w_cut], w2[w_cut:]])
-        w = w.reshape(shape)
-        b = np.concatenate([b1[:b_cut], b2[b_cut:]])
+        b_mask = np.random.randint(0, int(random.random() * b1.size)+1, size=b1.shape).astype(np.bool)
+        b = np.copy(b1)
+        b[b_mask] = individual2.model.layers[layer].get_weights()[1][b_mask]
         child.model.layers[layer].set_weights(np.asarray([w, b]))
     return child
 
